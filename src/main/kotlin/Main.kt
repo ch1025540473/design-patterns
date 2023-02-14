@@ -1,14 +1,11 @@
-import clone.ConcreteProtoType
-import com.sun.org.apache.xml.internal.dtm.ref.CoroutineManager
-import decorator.Notifier
-import decorator.QQDecorator
-import decorator.SmsDecorator
-import decorator.WechatDecorator
-import factory.Button
-import factory.GUIFactory
-import factory.MacOSFactory
-import factory.WindowsFactory
-import kotlin.coroutines.CoroutineContext
+import src.main.kotlin.bridge.RemoteControl
+import src.main.kotlin.bridge.TV
+import src.main.kotlin.command.App
+import src.main.kotlin.command.CutCommand
+import src.main.kotlin.command.Editor
+import src.main.kotlin.component.Graphic
+import src.main.kotlin.component.ImageEditor
+import src.main.kotlin.component.TextView
 
 fun main(args: Array<String>) {
 //    var home = Home()
@@ -37,20 +34,45 @@ fun main(args: Array<String>) {
 //    println(clone.clone())
 
     // 工厂
-    var factory : GUIFactory
-    var platform : String = "MAC"
+//    var factory : GUIFactory
+//    var platform : String = "MAC"
+//
+//    if (platform.equals("")){
+//        factory = MacOSFactory()
+//    }else{
+//        factory = WindowsFactory()
+//    }
+//
+//    var button = factory.createButton()
+//    var image = factory.createImage()
+//
+//    button.click()
+//    image.showImage("www.baidu.com")
 
-    if (platform.equals("")){
-        factory = MacOSFactory()
-    }else{
-        factory = WindowsFactory()
-    }
+    // 桥接
+//    var device = TV()
+//    var remote = RemoteControl(device)
+//    remote.volumeUp()
 
-    var button = factory.createButton()
-    var image = factory.createImage()
+    // 组合
+//    var imageEditor = ImageEditor()
+//    imageEditor.load()
+//    var lists = ArrayList<Graphic>()
+//    lists.add(TextView())
+//    imageEditor.groupSelect(lists)
+//
+//    imageEditor.draw()
 
-    button.click()
-    image.showImage("www.baidu.com")
+
+    // 命令
+    var editor = Editor()
+    var app = App()
+    var command = CutCommand(app,editor)
+    app.executeCommand(command)
+    println(app.clipBoard)
+
+
+
 
 }
 
